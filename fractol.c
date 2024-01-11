@@ -1,4 +1,4 @@
-i
+
 int	ft_free(t_data *frac)
 {
 	if (frac && frac->win)
@@ -14,7 +14,7 @@ int	fractal_draw(t_data *frac)
 	a = -1;
 	while (++a < WIDTH)
 	{
-		frac->x = frac->lim.yim + (double)b * (frac->lim.ymax - frac->limymin) / HEIGHT;
+		frac->x = frac->lim.xim + (double)a * (frac->lim.xmax - frac->limxmin) / HEIGHT;
 		b = -1;
 		while(++b < HEIGHT)
 		{
