@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   aux.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/15 11:18:51 by andmart2          #+#    #+#             */
+/*   Updated: 2024/01/15 14:31:10 by andmart2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fractol.h"
 
 void	ft_pixel_put(t_data *frac, int x, int y, int color)
 {
-	char *pix;
+	char	*pix;
 
 	pix = fric->img.ppt + (frac->img.line * y + x *(frac->img.bits / 8));
 	*(int *)pix = color;
@@ -11,23 +22,25 @@ void	ft_pixel_put(t_data *frac, int x, int y, int color)
 
 int	ft_color(t_data *frac)
 {
-	if(frac->i == 100)
-		return(0x000000);
+	if (frac->i == 100)
+		return (0x000000);
 	else if (frac->type == 3)
-		return (frac->i * frac->color << 16 | frac->color << 8 | frac->i)
+		return (frac->i * frac->color << 16 | frac->color << 8 | frac->i);
 	else if (frac->type == 1)
-		return(frac->i * frac->color << 16 | frac->i * frac->color << 8 | frac-> i);
+		return (frac->i * frac->color << 16 | \
+				frac->i * frac->color << 8 | frac-> i);
 	else
-		return (240 * frac->i * frac->color << 16 | 50 * frac->i * frac->color << 8 | frac->i * frac->color);
+		return (240 * frac->i * frac->color << 16 || \
+				50 * frac->i * frac->color << 8 | frac->i * frac->color);
 }
 
 int	ft_key_hook(int key, t_data *fract)
 {
-	if(key == ESC)
+	if (key == ESC)
 		ft_free(frac);
 	else if (key == SHIFT)
 	{
-		if(frac->color < 1000)
+		if (frac->color < 1000)
 			frac->color *= 3;
 		else
 			frac->color = 1;
@@ -35,26 +48,28 @@ int	ft_key_hook(int key, t_data *fract)
 	else
 		return (1);
 	fractal_draw(frac);
-	return(0);
-} 
+	return (0);
+}
 
 int	ft_read_keys(int key, t_data *frac)
 {
-	if(key > 122 && key < 127)
+	if (key > 122 && key < 127)
 		ft_move(key, frac);
 	fractal_draw(frac);
-	return(0);
+	return (0);
 }
 
-int 	ft_mouse_hook(int key, int x, int y, t_data *frac)
+int	ft_mouse_hook(int key, int x, int y, t_data *frac)
 {
-	if(frac-> type == 2 && key == LEFT_CLICK)
+	if (frac-> type == 2 && key == LEFT_CLICK)
 	{
-		frac->lim.cr = -2 + (frac->lim.xmax - frac->lim.xmin) * (double)x /WIDTH;
-		frac->lim.cim = -2 + (frac->lim.ymax - frac->lim.ymin) * (double)y / HEIGHT;
+		frac->lim.cr = -2 + (frac->lim.xmax - frac->lim.xmin) \
+			* (double)x / WIDTH;
+		frac->lim.cim = -2 + (frac->lim.ymax - frac->lim.ymin) \
+			* (double)y / HEIGHT;
 	}
 	if (key == ZOOM_IN || key == ZOOM_OUT)
-		ft_zoom(key, (double)x /WIDTH, (double)y / HEIGHT, frac);
+		ft_zoom(key, (double)x / WIDTH, (double)y / HEIGHT, frac);
 	fractal_draw(frac);
-	return(0);
+	return (0);
 }

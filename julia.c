@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   julia.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/15 11:19:54 by andmart2          #+#    #+#             */
+/*   Updated: 2024/01/15 13:35:32 by andmart2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void	set_julia(int argc, char **argv, t_data *frac)
@@ -14,7 +26,11 @@ void	set_julia(int argc, char **argv, t_data *frac)
 	}
 	if (argc == 2 || flag > 0 || argc == 3 || argc > 4)
 	{
-		
+		ft_printf("you can put 2 numbers from -2.0");
+		ft_printf("to 2.0 to change its shape");
+		ft_printf("0.3 -0.56 symple press left mouse button");
+		if (flag > 0 || argc == 3 || argc > 4)
+			exit (1);
 	}
 	frac-> lim.xmin = -2;
 	frac-> lim.xmax = 2;
@@ -24,7 +40,7 @@ void	set_julia(int argc, char **argv, t_data *frac)
 
 int	ft_atof(char *str, double *c)
 {
-	int	i;
+	int		i;
 	double	x;
 	double	d;
 
@@ -48,7 +64,7 @@ int	ft_atof(char *str, double *c)
 	if (str[0] == '-')
 		x *= -1;
 	*c = x;
-	return(0);
+	return (0);
 }
 
 void	draw_julia(t_data *frac)
@@ -57,9 +73,9 @@ void	draw_julia(t_data *frac)
 	double	y;
 	double	temp;
 
-	x = frac->x;
-	y = frac->y;
-	frac-> i = -1;
+	x = frac-> x;
+	y = frac-> y;
+	frac -> i = -1;
 	while ((x * x + y * y) <= 10.0 && ++frac->i < 100)
 	{
 		temp = x * x - y * y + frac->lim.cr;

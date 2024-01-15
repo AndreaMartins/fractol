@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/15 11:19:23 by andmart2          #+#    #+#             */
+/*   Updated: 2024/01/15 14:36:32 by andmart2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "fractol.h"
 
 int	ft_free(t_data *frac)
 {
@@ -14,11 +27,13 @@ int	fractal_draw(t_data *frac)
 	a = -1;
 	while (++a < WIDTH)
 	{
-		frac->x = frac->lim.xim + (double)a * (frac->lim.xmax - frac->limxmin) / HEIGHT;
+		frac->x = frac->lim.xim + (double)a \
+			* (frac->lim.xmax - frac->limxmin) / HEIGHT;
 		b = -1;
-		while(++b < HEIGHT)
+		while (++b < HEIGHT)
 		{
-			frac->y = frac ->lim.ymin + (double)b *(frac->lim.ymax - frac->lim.ymin)/ HEIGHT;
+			frac->y = frac ->lim.ymin + (double)b \
+				* (frac -> lim.ymax - frac -> lim.ymin) / HEIGHT;
 			if (frac->type == 1)
 				draw_mandel(frac);
 			else if (frac->type == 2)
@@ -28,10 +43,9 @@ int	fractal_draw(t_data *frac)
 			ft_pixel_put(frac, a, b, ft_color(frac));
 		}
 	}
-	mlx_put_image_to_window(frac->init, frac->win, frac->img.ipt, 0 , 0);
-	return(1);
+	mlx_put_image_to_window(frac->init, frac->win, frac->img.ipt, 0, 0);
+	return (1);
 }
-
 
 void	intialize(char *name, t_data *frac)
 {
@@ -59,22 +73,22 @@ void	intialize(char *name, t_data *frac)
 	fractal_draw(frac);
 }
 
-
-void	parse (int c, char **argv, t_data *frac)
+void	parse(int c, char **argv, t_data *frac)
 {
-	t_lim lim;
-	
+	t_lim	lim;
+
 	ft_memset(&lin, 0, sizeof(t_lim));
 	frac->lim = lim;
 	frac->color = 3;
 	if (ac == 2 && !ft_strncmp(argv[1], "mandelbrot", 10) && !*(argv[1] + 10))
 		set_mandelbrot(frac);
-	else if (ac >= 2 && !ftstrncmp(argv[1], "julia", 5) && !*(argv[1] + 5)) 
+	else if (ac >= 2 && !ftstrncmp(argv[1], "julia", 5) && !*(argv[1] + 5))
 	{
 		frac->type = 2;
 		set_julia(ac, argv, frac);
 	}
-	else if (ac == 2 && ft_strncmp(argv[1], "burning_ship",12) && !*(argv[1] + 12))
+	else if (ac == 2 && ft_strncmp(argv[1], "burning_ship", 12) \
+			&& !*(argv[1] + 12))
 		set_ship(frac);
 	else
 	{
@@ -86,7 +100,7 @@ void	parse (int c, char **argv, t_data *frac)
 
 int	main(int argc, char **argv)
 {
-	t_data frac;
+	t_data	frac;
 
 	parse(argc, argv, &frac);
 	initialize(argv[1], &frac);
@@ -95,5 +109,5 @@ int	main(int argc, char **argv)
 	mlx_key_hook(frac.win, ft_key_hook, &frac);
 	mlx_mouse_hook(frac.win, ft_mouse_hook, &frac);
 	mlx_loop(frac.init);
-	return(0); 
+	return (0);
 }
