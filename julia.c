@@ -26,16 +26,16 @@ void	set_julia(int argc, char **argv, t_data *frac)
 	}
 	if (argc == 2 || flag > 0 || argc == 3 || argc > 4)
 	{
-		ft_printf("you can put 2 numbers from -2.0");
-		ft_printf("to 2.0 to change its shape");
-		ft_printf("0.3 -0.56 symple press left mouse button");
+		printf("You can follow the name of julia by 2 numbers (from -2.0 ");
+		printf("to 2.0) to change it's shape.\nExample: ./fractol julia ");
+		printf("0.3 -0.56\nOR simply press the LEFT mouse button\n");
 		if (flag > 0 || argc == 3 || argc > 4)
 			exit (1);
 	}
-	frac-> lim.xmin = -2;
-	frac-> lim.xmax = 2;
-	frac-> lim.ymin = -2;
-	frac-> lim.ymax = 2;
+	frac->lim.xmin = -2;
+	frac->lim.xmax = 2;
+	frac->lim.ymin = -2;
+	frac->lim.ymax = 2;
 }
 
 int	ft_atof(char *str, double *c)
@@ -56,7 +56,7 @@ int	ft_atof(char *str, double *c)
 		while (str[i] && (str[i] >= '0' && str[i] <= '9'))
 		{
 			x += (str[i++] - '0') * d;
-			d += 0.1;
+			d *= 0.1;
 		}
 	}
 	if (str[i] || (str[0] == '-' && x == 0) || x > 2)
@@ -73,8 +73,8 @@ void	draw_julia(t_data *frac)
 	double	y;
 	double	temp;
 
-	x = frac-> x;
-	y = frac-> y;
+	x = frac->x;
+	y = frac->y;
 	frac -> i = -1;
 	while ((x * x + y * y) <= 10.0 && ++frac->i < 100)
 	{

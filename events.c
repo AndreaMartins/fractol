@@ -9,6 +9,7 @@
 /*   Updated: 2024/01/15 11:43:29 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "fractol.h"
 
 void	ft_move(int key, t_data *frac)
@@ -26,7 +27,7 @@ void	ft_move(int key, t_data *frac)
 	if (key == ARROW_LEFT)
 	{
 		frac->lim.xmin -= x_len * MOVE;
-		frac->lim.xman -= x_len * MOVE;
+		frac->lim.xmax -= x_len * MOVE;
 	}
 	if (key == ARROW_UP)
 	{
@@ -57,8 +58,8 @@ void	ft_zoom(int key, double x, double y, t_data *frac)
 	if (key == ZOOM_OUT)
 	{
 		frac->lim.xmin -= ((x_len * ZOOM) - x_len) * x;
-		frac->lim.xmin += ((x_len * ZOOM) - x_len) * (1 - x);
-		frac->lim.xmin -= ((y_len * ZOOM) - y_len) * y;
-		frac->lim.xmin += ((y_len * ZOOM) - y_len) * (1 - y);
+		frac->lim.xmax += ((x_len * ZOOM) - x_len) * (1 - x);
+		frac->lim.ymin -= ((y_len * ZOOM) - y_len) * y;
+		frac->lim.ymax += ((y_len * ZOOM) - y_len) * (1 - y);
 	}
 }

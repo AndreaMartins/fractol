@@ -12,21 +12,22 @@
 
 NAME = fractol
 CC = cc
-FLAGS = -Wall -Wextra -Werror -MMD -I ./ -O3
-ML_FLAGS = -framework OpenGL -framework AppKit  # Corrected typo in the framework option
+FLAGS = -Wall -Wextra -Werror -MMD -I ./ -o3 #-g -fsanitize=address
+ML_FLAGS = -framework OpenGL -framework AppKit
 
 SRC = fractol.c aux.c events.c mandelbrot.c julia.c burning_ship.c
 
-OBJ = $(SRC:.c=.o)  # Corrected typo in the substitution
+OBJ = $(SRC:.c=.o)
+DEPS = $(SRC:.c=.d)
 
 SRC_LIBFT = ./libft/libft.a
 MAKE_LIBFT = make -C libft --no-print-directory
 
-SRC_ML = ./mlx/libmlx.a
-MAKE_ML = make -C mlx --no-print-directory  # Corrected typo in --no--print-directory
+SRC_ML = ./minilibx/libmlx.a
+MAKE_ML = make -C minilibx --no-print-directory
 
 %.o: %.c Makefile
-	$(CC) $(FLAGS) -Iminilibx -Ilibft -c $< -o $@  # Corrected typo in -o option
+	$(CC) $(FLAGS) -Iminilibx -Ilibft -c $< -o $@
 
 all: make_lib make_ml $(NAME)
 
@@ -41,8 +42,9 @@ $(NAME): $(OBJ) $(SRC_LIBFT) $(SRC_ML)
 	$(CC) $(FLAGS) -Lminilibx $(ML_FLAGS) $(^) -o $(NAME)
 
 clean:
-	rm -f $(OBJ) $(DEPS)
-	$(MAKE_LIBFT) clean  # Changed to `clean` instead of `fclean` for library clean
+	rm -f $(OBJ) $(DEPS) $(OBJ_BONUS)
+	$(MAKE_LIBFT) clean
+	$(MAKE_ML) clean
 
 fclean: clean
 	rm -f $(NAME)
@@ -50,5 +52,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re make_lib make_ml
-
+.PHONY: all clean fclean re
