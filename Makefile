@@ -6,7 +6,7 @@
 #    By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/15 11:17:27 by andmart2          #+#    #+#              #
-#    Updated: 2024/01/17 10:59:34 by andmart2         ###   ########.fr        #
+#    Updated: 2024/01/17 13:38:36 by andmart2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = cc
 FLAGS = -Wall -Wextra -Werror -MMD -I ./ -o3 #-g -fsanitize=address
 ML_FLAGS = -framework OpenGL -framework AppKit
 
-SRC = fractol.c aux.c events.c mandelbrot.c julia.c burning_ship.c
+SRC = fractol.c aux.c colors.c events.c mandelbrot.c julia.c burning_ship.c
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(SRC:.c=.d)

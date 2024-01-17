@@ -6,7 +6,7 @@
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:20:22 by andmart2          #+#    #+#             */
-/*   Updated: 2024/01/17 10:14:49 by andmart2         ###   ########.fr       */
+/*   Updated: 2024/01/17 13:38:17 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,15 @@ int		fractal_draw(t_data *frac);
 
 /****  aux.c - hooks and pixel put ******/
 void	ft_pixel_put(t_data *frac, int a, int b, int color);
-int		ft_color(t_data *frac);
 int		ft_read_keys(int key, t_data *frac);
 int		ft_key_hook(int key, t_data *frac);
 int		ft_mouse_hook(int key, int x, int y, t_data *frac);
+
+/**** colors.c - colors for fractals ****/
+int		ft_color(t_data *frac);
+int		calculate_color_ship(t_data *frac);
+int		calculate_color_mandelbrot(t_data *frac);
+int		calculate_color_else(t_data *frac);
 
 /****  events.c - event functions - move, zoom, etc. ******/
 void	ft_move(int key, t_data *frac);
