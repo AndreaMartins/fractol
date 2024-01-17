@@ -6,7 +6,7 @@
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:19:23 by andmart2          #+#    #+#             */
-/*   Updated: 2024/01/15 14:36:32 by andmart2         ###   ########.fr       */
+/*   Updated: 2024/01/17 10:06:55 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	fractal_draw(t_data *frac)
 	return (1);
 }
 
-void	initialize(char *name, t_data *frac)
+void	init(char *name, t_data *frac)
 {
 	t_img	img;
 
@@ -92,7 +92,7 @@ void	parse(int ac, char **argv, t_data *frac)
 		set_ship(frac);
 	else
 	{
-		printf("Introduce one of the available fractals:\n");
+		printf("Choose one of the available fractals:\n");
 		printf("1. mandelbrot\n2. julia\n3. burning_ship\n");
 		exit (1);
 	}
@@ -103,7 +103,7 @@ int	main(int argc, char **argv)
 	t_data	frac;
 
 	parse(argc, argv, &frac);
-	initialize(argv[1], &frac);
+	init(argv[1], &frac);
 	mlx_hook(frac.win, 17, 0, ft_free, &frac);
 	mlx_hook(frac.win, 2, 0, ft_read_keys, &frac);
 	mlx_key_hook(frac.win, ft_key_hook, &frac);

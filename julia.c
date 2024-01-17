@@ -6,7 +6,7 @@
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:19:54 by andmart2          #+#    #+#             */
-/*   Updated: 2024/01/15 13:35:32 by andmart2         ###   ########.fr       */
+/*   Updated: 2024/01/17 10:30:41 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void	set_julia(int argc, char **argv, t_data *frac)
 	}
 	if (argc == 2 || flag > 0 || argc == 3 || argc > 4)
 	{
-		printf("You can follow the name of julia by 2 numbers (from -2.0 ");
-		printf("to 2.0) to change it's shape.\nExample: ./fractol julia ");
-		printf("0.3 -0.56\nOR simply press the LEFT mouse button\n");
+		printf("Introduce 2 numbers after julia (from -2.0 to 2.0");
 		if (flag > 0 || argc == 3 || argc > 4)
 			exit (1);
 	}

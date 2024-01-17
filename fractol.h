@@ -6,7 +6,7 @@
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:20:22 by andmart2          #+#    #+#             */
-/*   Updated: 2024/01/15 14:37:31 by andmart2         ###   ########.fr       */
+/*   Updated: 2024/01/17 10:14:49 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,10 @@ typedef struct s_data
 }	t_data;
 
 /****  fractol.c - main and creating a window ******/
-void	initialize(char *argv, t_data *frac);
+void	init(char *argv, t_data *frac);
 int		ft_free(t_data *frac);
 void	parse(int ac, char **argv, t_data *frac);
 int		fractal_draw(t_data *frac);
-/**************************************************/
 
 /****  aux.c - hooks and pixel put ******/
 void	ft_pixel_put(t_data *frac, int a, int b, int color);
@@ -80,7 +79,6 @@ int		ft_color(t_data *frac);
 int		ft_read_keys(int key, t_data *frac);
 int		ft_key_hook(int key, t_data *frac);
 int		ft_mouse_hook(int key, int x, int y, t_data *frac);
-/**************************************************/
 
 /****  events.c - event functions - move, zoom, etc. ******/
 void	ft_move(int key, t_data *frac);
@@ -98,6 +96,5 @@ void	draw_julia(t_data *frac);
 /****  burning_ship.c - all functions related to burning_ship ******/
 void	set_ship(t_data *frac);
 void	draw_ship(t_data *frac);
-void	draw_zhuzhleva(t_data *frac);
 
 #endif
