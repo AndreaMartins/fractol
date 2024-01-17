@@ -6,7 +6,7 @@
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:18:51 by andmart2          #+#    #+#             */
-/*   Updated: 2024/01/17 10:45:16 by andmart2         ###   ########.fr       */
+/*   Updated: 2024/01/17 13:27:52 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,35 @@ void	ft_pixel_put(t_data *frac, int x, int y, int color)
 
 int	ft_color(t_data *frac)
 {
+	int	red;
+	int green;
+	int	blue;
+
 	if (frac->i == 100)
 		return (0x000000);
-	else if (frac->type == 3)
-		return (frac->i * frac->color << 16 | frac->color << 8 | frac->i);
+	if (frac->type == 3)
+	{
+		red = ((((frac->i * 5) % 255 * 0.5) + 0x7B) + 0xA1 * frac->i / 100) / 2;
+		green = ((((frac->i * 7) % 255 * 0.5) + 0xD3) + 0xEE * frac->i / 100) / 2;
+		blue = ((((frac->i * 11) % 255 * 0.5) + 0xEA) + 0xBD * frac->i / 100) / 2;
+		return red << 16 | green << 8 | blue;
+	}
 	else if (frac->type == 1)
-		return (frac->i * frac->color << 16 | frac->i * frac->color << 8 \
-				| frac->i);
+	{
+		red = ((frac->i * 5) % 255 * 0.5) + 0x71;
+		green = ((frac->i * 7) % 255 * 0.5) + 0x1D;
+		blue = ((frac->i * 11) % 255 * 0.5) + 0xB0;
+		return red << 16 | (green + frac->i * 2) << 8 | blue + frac->i;
+	}
 	else
-		return (240 * frac->i * frac->color << 16 \
-				| 50 * frac->i * frac->color << 8 \
-				| frac->i * frac->color);
+	{
+		red = ((((frac->i * 8) % 255 * 0.5) + 0x29) + 0x78 * frac->i / 75) / 2;
+		green = ((((frac->i * 10) % 255 * 0.5) + 0x4B) + 0x94 * frac->i / 75) / 2;
+		blue = ((((frac->i * 12) % 255 * 0.5) + 0x29) + 0x61 * frac->i / 75) / 2;
+		return red << 16 | (green + frac->i * 3) << 8 | blue + frac->i;
+	}
 }
+
 
 int	ft_key_hook(int key, t_data *frac)
 {
